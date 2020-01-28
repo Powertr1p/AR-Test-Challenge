@@ -29,17 +29,13 @@ public class WallSpawner : MonoBehaviour
     {
         var wall = Instantiate(_wallPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         wall.GetComponent<Wall>().Init(ref _firstObject, ref _secondObject);
-        wall.transform.SetParent(transform);
          _isSpawned = true;
     }
 
-    public void DestroyWall()
+    private void DestroyWall()
     {
-        if (_isSpawned)
-        {
-            var wall = GetComponentInChildren<Wall>();
-            Destroy(wall.gameObject);
-            _isSpawned = false;
-        }
+         var wall = FindObjectOfType<Wall>();
+         Destroy(wall.gameObject);
+        _isSpawned = false;
     }
 }
