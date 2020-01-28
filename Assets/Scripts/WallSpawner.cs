@@ -16,15 +16,21 @@ public class WallSpawner : MonoBehaviour
         _detector = GetComponent<TrackState>();
     }
 
-    public void SpawnWall()
+    private void Update()
     {
-        if (!_isSpawned && _detector.FirstObjectIsSpotted && _detector.SecondIsObjectIsSpotted)
-        {
-            var wall = Instantiate(_wallPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-            wall.GetComponent<Wall>().Init(ref _firstObject, ref _secondObject);
-            wall.transform.SetParent(transform);
-            _isSpawned = true;
-        }
+        if (!_isSpawned && _detector.FirstObjectIsSpotted && _detector.SecondObjectIsSpotted)
+            SpawnWall();
+
+        else if (_isSpawned && (!_detector.FirstObjectIsSpotted || !_detector.SecondObjectIsSpotted))
+            DestroyWall();
+    }
+
+    private void SpawnWall()
+    {
+        var wall = Instantiate(_wallPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        wall.GetComponent<Wall>().Init(ref _firstObject, ref _secondObject);
+        wall.transform.SetParent(transform);
+         _isSpawned = true;
     }
 
     public void DestroyWall()

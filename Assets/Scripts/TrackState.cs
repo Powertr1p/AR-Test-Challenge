@@ -5,8 +5,8 @@ using UnityEngine;
 public class TrackState : MonoBehaviour
 {
     public bool FirstObjectIsSpotted { get; private set; }
-    public bool SecondIsObjectIsSpotted { get; private set; }
-    public bool ThirdIsObjectIsSpotted { get; private set; }
+    public bool SecondObjectIsSpotted { get; private set; }
+    public bool ThirdObjectIsSpotted { get; private set; }
 
     public void FirstSpotted()
     {
@@ -15,12 +15,12 @@ public class TrackState : MonoBehaviour
 
     public void SecondSpotted()
     {
-        SecondIsObjectIsSpotted = true;
+        SecondObjectIsSpotted = true;
     }
 
     public void ThirdSpotted()
     {
-        ThirdIsObjectIsSpotted = true;
+        ThirdObjectIsSpotted = true;
     }
 
     public void FirstNotSpotted()
@@ -30,11 +30,11 @@ public class TrackState : MonoBehaviour
 
     public void SecondNotSpotted()
     {
-        SecondIsObjectIsSpotted = false;
+        SecondObjectIsSpotted = false;
     }
 
     public void ThirdNotSpotted()
     {
-        ThirdIsObjectIsSpotted = false;
+        ThirdObjectIsSpotted = false;
     }
 }
