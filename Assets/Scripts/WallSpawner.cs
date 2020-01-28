@@ -11,11 +11,6 @@ public class WallSpawner : MonoBehaviour
 
     private bool _isSpawned;
 
-    private void Start()
-    {
-        _detector = GetComponent<TrackState>();
-    }
-
     private void Update()
     {
         if (!_isSpawned && _detector.FirstObjectIsSpotted && _detector.SecondObjectIsSpotted)
