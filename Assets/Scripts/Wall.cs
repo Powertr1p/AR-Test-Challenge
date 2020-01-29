@@ -35,8 +35,7 @@ public class Wall : MonoBehaviour
 
         if (_first.IsRendered == false || _second.IsRendered == false)
         {
-            _first.HasWall = false;
-            Destroy(gameObject);
+            DestroySelf();
         }
     }
 
@@ -62,5 +61,11 @@ public class Wall : MonoBehaviour
         _wallColor.g = (255 / transform.localScale.y) / 100;
         _wallColor.b = (255 / transform.localScale.y) / 100;
         _material.color = _wallColor;
+    }
+
+    public void DestroySelf()
+    {
+        _first.HasWall = false;
+        Destroy(gameObject);
     }
 }
