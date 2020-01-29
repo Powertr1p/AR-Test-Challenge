@@ -41,12 +41,10 @@ public class WallSpawner : MonoBehaviour
 
     private void PickRenderedObject()
     {
-        if (_renderedCylinders.Count < 2) { return; }
-
         if (_renderedCylinders.Count == 2 && !_renderedCylinders[0].HasWall)
             SpawnWall(_renderedCylinders[0], _renderedCylinders[1]);
 
-        //if (_renderedCylinders.Count == 3)
-           // SpawnWall(_renderedCylinders[1], _renderedCylinders[2]);
+        if (_renderedCylinders.Count == 3 && !_renderedCylinders[1].HasWall)
+            SpawnWall(_renderedCylinders[1], _renderedCylinders[2]);
     }
 }

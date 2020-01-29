@@ -15,6 +15,11 @@ public class Wall : MonoBehaviour
     private Vector3 _distanceBetweenObjects;
     private Vector3 _positionInMiddle;
 
+    private void OnEnable()
+    {
+        GetComponent<TouchDetector>().OnMaxTouches += DestroySelf;
+    }
+
     private void Start()
     {
         _material = GetComponent<Renderer>().material;
@@ -35,9 +40,7 @@ public class Wall : MonoBehaviour
         ChangeColor();
 
         if (_first.IsRendered == false || _second.IsRendered == false)
-        {
             DestroySelf();
-        }
     }
 
     private void GetNewPositionPoints()
@@ -64,9 +67,14 @@ public class Wall : MonoBehaviour
         _material.color = _wallColor;
     }
 
-    public void DestroySelf()
+    private void DestroySelf()
     {
         _first.HasWall = false;
         Destroy(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<TouchDetector>().OnMaxTouches -= DestroySelf;
     }
 }
