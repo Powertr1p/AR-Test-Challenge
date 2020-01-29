@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Cylinder : MonoBehaviour
 {
-    public bool IsRendered { get; private set; }
+    public bool IsRendered; //{ get; private set; }
     public bool HasWall;
     public void OnFound()
     {

@@ -18,6 +18,7 @@ public class Wall : MonoBehaviour
     private void Start()
     {
         _material = GetComponent<Renderer>().material;
+        _wallColor = Color.white;
     }
 
     public void Init(ref Cylinder firstObject, ref Cylinder secondObject)
@@ -52,7 +53,7 @@ public class Wall : MonoBehaviour
     {
         transform.position = _positionInMiddle;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, _distanceBetweenObjects);
-        transform.localScale = new Vector3(transform.localScale.x, _distanceBetweenObjects.magnitude, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, _distanceBetweenObjects.magnitude * 1, transform.localScale.z);
     }
 
     private void ChangeColor()
