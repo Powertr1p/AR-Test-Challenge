@@ -7,7 +7,8 @@ public class Wall : MonoBehaviour
     private Cylinder _first;
     private Cylinder _second;
 
-    private Renderer _materialRenderer;
+    private Material _material;
+    private Color _wallColor;
 
     private Vector3 _startPosition;
     private Vector3 _endPosition;
@@ -16,7 +17,7 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
-        _materialRenderer = GetComponent<Renderer>();
+        _material = GetComponent<Renderer>().material;
     }
 
     public void Init(ref Cylinder firstObject, ref Cylinder secondObject)
@@ -30,6 +31,7 @@ public class Wall : MonoBehaviour
     {
         GetNewPositionPoints();
         UpdateCurrentPosition();
+        ChangeColor();
 
         if (_first.IsRendered == false || _second.IsRendered == false)
         {
@@ -51,13 +53,14 @@ public class Wall : MonoBehaviour
     {
         transform.position = _positionInMiddle;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, _distanceBetweenObjects);
-        transform.localScale = new Vector3(transform.localScale.x, _distanceBetweenObjects.magnitude * 1, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, _distanceBetweenObjects.magnitude, transform.localScale.z);
     }
 
     private void ChangeColor()
     {
-
-
-        //localscale.y = 3 == red
+        _wallColor.r = 1;
+        _wallColor.g = (255 / transform.localScale.y) / 100;
+        _wallColor.b = (255 / transform.localScale.y) / 100;
+        _material.color = _wallColor;
     }
 }
